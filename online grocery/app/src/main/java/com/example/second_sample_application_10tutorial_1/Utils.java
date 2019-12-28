@@ -45,6 +45,17 @@ public class Utils {
 
     }
 
+    public ArrayList<GroceryItem> getAllItems (Context context){
+        Log.d(TAG, "getAllItems: started");
+        Gson gson = new Gson();
+        SharedPreferences sharedPreferences = context.getSharedPreferences(DATABASE_NAME,Context.MODE_PRIVATE);
+        Type type= new TypeToken<ArrayList<GroceryItem>>(){}.getType();
+        ArrayList<GroceryItem> allItems=gson.fromJson(sharedPreferences.getString("allItems",null),type);
+        return allItems;
+    }
+
+
+
     private void initAllItems(Context context) {
         Log.d(TAG, "initAllItems: started");
 
@@ -61,7 +72,7 @@ public class Utils {
 
         ArrayList<GroceryItem> allItems = new ArrayList<>();
         allItems.add(new GroceryItem("cheese","Best cheese possible",
-                "http://cdn.shopify.com/s/files/1/0150/0232/products/Pearl_Valley_Swiss_Slices_36762caf-0757-45d2-91f0-424bcacc9892_grande.jpg?v=1534871055",
+                "https://cdn1.harryanddavid.com/wcsstore/HarryAndDavid/images/catalog/19_27281_30GM_01ex.jpg",
                 "food", 3, 4.45));
         allItems.add(new GroceryItem("Cucumber","Best Cucumber possible",
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTapdZPL-NqqJaAr_wvW6LueDwcGZhoCHmG8dmiLZffhIcsUyFN&s",

@@ -1,15 +1,66 @@
 package com.example.second_sample_application_10tutorial_1;
 
+import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class GroceryItemAdapter {
+import com.bumptech.glide.Glide;
+import com.example.second_sample_application_10tutorial_1.Models.GroceryItem;
+
+import java.util.ArrayList;
+
+public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.ViewHolder> {
     private static final String TAG = "GroceryItemAdapter";
+
+    private Context context;
+    private ArrayList<GroceryItem> items =new ArrayList<>();
+
+    public GroceryItemAdapter(Context context) {
+        this.context = context;
+
+    }
+
+    public GroceryItemAdapter() {
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grocery_rec_view_list_item,parent,false);
+        ViewHolder holder = new ViewHolder(view);
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Log.d(TAG, "onBindViewHolder: called");
+        holder.name.setText(items.get(position).getName());
+        holder.price.setText(String.valueOf(items.get(position).getPrice()));
+        Glide.with(context)
+                   .asBitmap()
+                .load(items.get(position).getImageUrl())
+                .into(holder.image);
+        holder.parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: navigate to another activity
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return items.size();
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -30,5 +81,10 @@ public class GroceryItemAdapter {
 
         }
     }
+
+    public void setItems(ArrayList<GroceryItem> items) {
+        this.items = items;
+        notifyDataSetChanged();
     }
+}
 
