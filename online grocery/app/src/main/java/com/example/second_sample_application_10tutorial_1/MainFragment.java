@@ -18,6 +18,9 @@ import com.example.second_sample_application_10tutorial_1.Models.GroceryItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MainFragment extends Fragment {
     private static final String TAG = "MainFragment";
@@ -65,9 +68,26 @@ public class MainFragment extends Fragment {
     if(null !=allItems){
         newItemAdapter.setItems(allItems);
     }
+        Comparator<GroceryItem> popularityComparator=new Comparator<GroceryItem>() {
+            @Override
+            public int compare(GroceryItem o1, GroceryItem o2) {
+                return compareByPopularity(o1,o2);
+            }
+        };
 
+        Collections.sort(allItems,popularityComparator);
     }
+private int compareByPopularity (GroceryItem item1, GroceryItem item2){
+    Log.d(TAG, "compareByPopularity: started");
 
+    if(item1.getPopularityPoint()>item2.getPopularityPoint()){
+        return 1;
+    }else if(item1.getPopularityPoint()>item2.getPopularityPoint()){
+        return -1;
+    }else{
+        return 0;
+    }
+}
     private void initBottomNavigation() {
         Log.d(TAG, "initBottomNavigation: started");
 
