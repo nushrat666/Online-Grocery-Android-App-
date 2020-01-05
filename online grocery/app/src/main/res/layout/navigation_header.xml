@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+2
+create navigation header-->
+
+<!--
+3
+create the full layout file-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -6,6 +14,12 @@
     android:gravity="bottom"
     android:paddingLeft="15dp"
     android:layout_height="176dp">
+
+<!--
+4
+paste a personal photo in drawable from picasso
+and set it in src -->
+
 <ImageView
     android:src="@drawable/shopping"
     android:layout_width="70dp"

@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--5
+create a packaged named menu and create
+ a menu resource file which is "navigation_drawer_menu'
+ under it -->
+
+
+<!--6
+set some picture in menu item, create it in drawable->image
+ asset (pictures are Cart,Categories,About us,Terms,License)-->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+<!-- 7
+create 5 items with icon, id and title-->
     <item
         android:icon="@drawable/ic_cart"
         android:id="@+id/ic_cart"
