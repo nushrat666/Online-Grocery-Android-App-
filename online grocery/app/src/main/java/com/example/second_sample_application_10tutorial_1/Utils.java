@@ -41,7 +41,7 @@ public class Utils {
         if (null == possibleItems) {
             initAllItems(context);
         }
-
+initAllItems(context);
 
     }
 
@@ -71,6 +71,14 @@ public class Utils {
         gson = new Gson();
 
         ArrayList<GroceryItem> allItems = new ArrayList<>();
+
+        GroceryItem IceCream=new GroceryItem("ice cream","produced of fresh milk",
+                "https://cms-static.wehaacdn.com/hoards-com/images/milk.16566.jpg",
+                "food", 15, 2.5);
+
+        IceCream.setPopularityPoint(10);
+
+
         allItems.add(new GroceryItem("cheese","Best cheese possible",
                 "https://cdn1.harryanddavid.com/wcsstore/HarryAndDavid/images/catalog/19_27281_30GM_01ex.jpg",
                 "food", 3, 4.45));
@@ -99,7 +107,7 @@ public class Utils {
                 "https://ntg-catalog.imgix.net/products/NTG_70501028209_30034003_Oil_Free_Acne_Wash_Daily_Scrub_4.2oz_00000.jpg?w=1200&h=1443&sfrm=jpg&fit=crop",
                 "Usable Product", 92, 9.45));
 
-
+allItems.add(IceCream);
         String finalString =gson.toJson(allItems);
         editor.putString("allItems",finalString);
         editor.commit();
