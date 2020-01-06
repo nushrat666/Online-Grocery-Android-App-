@@ -41,7 +41,7 @@ public class Utils {
         if (null == possibleItems) {
             initAllItems(context);
         }
-initAllItems(context);
+
 
     }
 
@@ -76,7 +76,7 @@ initAllItems(context);
                 "https://cms-static.wehaacdn.com/hoards-com/images/milk.16566.jpg",
                 "food", 15, 2.5);
 
-        IceCream.setPopularityPoint(10);
+
 
 
         allItems.add(new GroceryItem("cheese","Best cheese possible",
