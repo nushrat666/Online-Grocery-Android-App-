@@ -24,6 +24,7 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
     private Context context;
     private ArrayList<GroceryItem> items =new ArrayList<>();
 
+
     public GroceryItemAdapter(Context context) {
         this.context = context;
 
