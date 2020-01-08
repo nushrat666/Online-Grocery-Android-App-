@@ -42,7 +42,7 @@ public class Utils {
             initAllItems(context);
         }
 
-
+initAllItems(context);
     }
 
     public ArrayList<GroceryItem> getAllItems (Context context){
@@ -77,7 +77,7 @@ public class Utils {
                 "food", 15, 2.5);
 
 
-
+IceCream.setPopularityPoint(10);
 
         allItems.add(new GroceryItem("cheese","Best cheese possible",
                 "https://cdn1.harryanddavid.com/wcsstore/HarryAndDavid/images/catalog/19_27281_30GM_01ex.jpg",
