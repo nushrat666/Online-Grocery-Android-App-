@@ -1,14 +1,20 @@
 package com.example.second_sample_application_10tutorial_1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.example.second_sample_application_10tutorial_1.Models.GroceryItem;
 
 public class GroceryItemActivity extends AppCompatActivity {
 
@@ -18,42 +24,90 @@ public class GroceryItemActivity extends AppCompatActivity {
     private ImageView itemImage;
     private Button btnAddToCart;
 
-    private ImageView firstFilledStar, secondFilledStar, thirdFilledStar, firstEmptyStar,secondEmptyStar,thirdEmptyStar;
+    private ImageView firstFilledStar, secondFilledStar, thirdFilledStar, firstEmptyStar, secondEmptyStar, thirdEmptyStar;
     private RecyclerView reviewRecView;
-    
+
+
+    private ReviewsAdapter adapter;
+
     private RelativeLayout addReviewRelLayout;
+
+    private GroceryItem incomingItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grocery_item);
-        
+
+        Intent intent = getIntent();
+        try {
+
+            incomingItem = intent.getParcelableExtra("item");
+
+            setViewsValues();
+
+
+        } catch (NullPointerException e) {
+
+        }
+
         initViews();
+    }
+
+    /**
+     * response for setting the initial values for views
+     */
+
+    private void setViewsValues() {
+        Log.d(TAG, "setViewsValues: started");
+
+        txtName.setText(incomingItem.getName());
+        txtPrice.setText(String.valueOf(incomingItem.getPrice() + "$"));
+        txtAvailability.setText(incomingItem.getAvailableAmount() + " number(s) available");
+        txtDescription.setText(incomingItem.getDescription());
+
+        Glide.with(this)
+                .asBitmap()
+                .load(incomingItem.getImageUrl())
+                .into(itemImage);
+
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: add item to the cart
+            }
+        });
+
+//TODO: handle the star situation
+
+        adapter = new ReviewsAdapter();
+        reviewRecView.setAdapter(adapter);
+        reviewRecView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     private void initViews() {
         Log.d(TAG, "initViews: started");
 
-        txtName =(TextView)findViewById(R.id.txtName);
-        txtPrice =(TextView)findViewById(R.id.txtPrice);
-        txtDescription =(TextView)findViewById(R.id.txtDesc);
-        txtAvailability =(TextView)findViewById(R.id.txtAvailability);
+        txtName = (TextView) findViewById(R.id.txtName);
+        txtPrice = (TextView) findViewById(R.id.txtPrice);
+        txtDescription = (TextView) findViewById(R.id.txtDesc);
+        txtAvailability = (TextView) findViewById(R.id.txtAvailability);
 
-        itemImage=(ImageView)findViewById(R.id.itemImage);
+        itemImage = (ImageView) findViewById(R.id.itemImage);
 
-        btnAddToCart=(Button) findViewById(R.id.btnAddToCart);
+        btnAddToCart = (Button) findViewById(R.id.btnAddToCart);
 
-        firstFilledStar=(ImageView)findViewById(R.id.firstFilledStar);
-        secondFilledStar=(ImageView)findViewById(R.id.secondFilledStar);
-        thirdFilledStar=(ImageView)findViewById(R.id.thirdFilledStar);
-        firstEmptyStar=(ImageView)findViewById(R.id.firstEmptyStar);
-        secondEmptyStar=(ImageView)findViewById(R.id.secondEmptyStar);
-        thirdEmptyStar=(ImageView)findViewById(R.id.thirdEmptyStar);
+        firstFilledStar = (ImageView) findViewById(R.id.firstFilledStar);
+        secondFilledStar = (ImageView) findViewById(R.id.secondFilledStar);
+        thirdFilledStar = (ImageView) findViewById(R.id.thirdFilledStar);
+        firstEmptyStar = (ImageView) findViewById(R.id.firstEmptyStar);
+        secondEmptyStar = (ImageView) findViewById(R.id.secondEmptyStar);
+        thirdEmptyStar = (ImageView) findViewById(R.id.thirdEmptyStar);
 
-        reviewRecView=(RecyclerView)findViewById(R.id.reviewsRecView);
+        reviewRecView = (RecyclerView) findViewById(R.id.reviewsRecView);
 
-        addReviewRelLayout=(RelativeLayout)findViewById(R.id.addReviewRelLayout);
-
+        addReviewRelLayout = (RelativeLayout) findViewById(R.id.addReviewRelLayout);
 
 
     }

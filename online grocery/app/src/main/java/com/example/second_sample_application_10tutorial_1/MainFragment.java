@@ -40,7 +40,13 @@ public class MainFragment extends Fragment {
 
         initBottomNavigation();
 
-        utils = new Utils();
+
+
+        utils = new Utils(getActivity());
+
+
+
+
         utils.initDatabase(getActivity());
 
         initRecViews();

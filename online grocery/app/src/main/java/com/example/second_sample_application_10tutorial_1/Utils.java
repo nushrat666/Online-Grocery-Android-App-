@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.second_sample_application_10tutorial_1.Models.GroceryItem;
+import com.example.second_sample_application_10tutorial_1.Models.Review;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -18,13 +19,33 @@ public class Utils {
 
     private static int ID = 0;
 
-    public Utils() {
+    private Context context;
+
+    public Utils(Context context) {
+        this.context=context;
     }
 
     public static int getID() {
         ID++;
         return ID;
     }
+    
+    public ArrayList<Review> getReviewForItem (int id){
+        Log.d(TAG, "getReviewForItem: started");
+        SharedPreferences sharedPreferences = context.getSharedPreferences(DATABASE_NAME,Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<GroceryItem>>(){}.getType();
+        ArrayList<GroceryItem> items = gson.fromJson(sharedPreferences.getString("allItems",null),type);
+        if(null != items){
+            for (GroceryItem item: items){
+                if (item.getId()==id){
+                    return item.getReviews();
+                }
+            }
+        }
+        return null;
+    }
+    
 
     public void initDatabase(Context context) {
         Log.d(TAG, "initDatabase: started");
