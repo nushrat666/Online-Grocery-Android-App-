@@ -1,9 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GroceryItemActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btnAddToCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:text="Add to Cart">
+
+    </Button>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btnAddToCart"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/firstRelLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/txtName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="name"
+                    android:textSize="18sp"
+                    android:textStyle="bold">
+
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="price"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+
+            </RelativeLayout>
+
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/itemImage"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_below="@+id/firstRelLayout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/txtAvailability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/itemImage"
+                android:layout_marginTop="10dp"
+                android:text="no item available">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/txtDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtAvailability"
+                android:layout_marginTop="10dp"
+                android:text="description in here"
+                android:textStyle="italic">
+
+            </TextView>
+
+            <RelativeLayout
+                android:id="@+id/starsRelLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtAvailability"
+                android:layout_alignParentRight="true">
+
+                <RelativeLayout
+                    android:id="@+id/firstStartRelLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/firstEmptyStar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_empty_star">
+
+
+                    </ImageView>
+
+                    <ImageView
+                        android:id="@+id/firstFilledStar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_filled_star"
+                        android:visibility="gone">
+
+
+                    </ImageView>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/secondStartRelLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/firstStartRelLayout">
+
+                    <ImageView
+                        android:id="@+id/secondEmptyStar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_empty_star">
+
+
+                    </ImageView>
+
+                    <ImageView
+                        android:id="@+id/secondFilledStar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_filled_star"
+                        android:visibility="gone">
+
+
+                    </ImageView>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/thirdStartRelLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/secondStartRelLayout">
+
+                    <ImageView
+                        android:id="@+id/thirdEmptyStar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_empty_star">
+
+
+                    </ImageView>
+
+                    <ImageView
+                        android:id="@+id/thirdFilledStar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_filled_star"
+                        android:visibility="gone">
+
+
+                    </ImageView>
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/reviewExplained"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDesc"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="25dp"
+                android:text="Reviews: "
+                android:textStyle="bold|italic">
+
+            </TextView>
+
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/reviewExplained"
+                android:id="@+id/addReviewRelLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/addImage"
+                    android:src="@drawable/ic_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </ImageView>
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/addImage"
+                    android:textColor="@color/colorAccent"
+                    android:text="(Add a review)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/addReviewRelLayout"
+                android:id="@+id/reviewsRecView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </RelativeLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

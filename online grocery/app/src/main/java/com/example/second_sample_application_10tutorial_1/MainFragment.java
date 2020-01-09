@@ -30,6 +30,7 @@ public class MainFragment extends Fragment {
     private GroceryItemAdapter newItemAdapter, popularItemsAdapter, suggestedItemAdapter;
 
     private Utils utils;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class MainFragment extends Fragment {
 
         initBottomNavigation();
 
-         utils = new Utils();
+        utils = new Utils();
         utils.initDatabase(getActivity());
 
         initRecViews();
@@ -51,33 +52,32 @@ public class MainFragment extends Fragment {
     private void initRecViews() {
         Log.d(TAG, "initRecViews: started");
 
-       newItemAdapter=new GroceryItemAdapter(getActivity());
-       popularItemsAdapter=new GroceryItemAdapter(getActivity());
-       suggestedItemAdapter=new GroceryItemAdapter(getActivity());
+        newItemAdapter = new GroceryItemAdapter(getActivity());
+        popularItemsAdapter = new GroceryItemAdapter(getActivity());
+        suggestedItemAdapter = new GroceryItemAdapter(getActivity());
 
-       newItemRecView.setAdapter(newItemAdapter);
-       popularItemsRecView.setAdapter(newItemAdapter);
-       suggestedItemRecView.setAdapter(newItemAdapter);
+        newItemRecView.setAdapter(newItemAdapter);
+        popularItemsRecView.setAdapter(newItemAdapter);
+        suggestedItemRecView.setAdapter(newItemAdapter);
 
-       newItemRecView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
-       popularItemsRecView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
-       suggestedItemRecView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+        newItemRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+        popularItemsRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+        suggestedItemRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
 
-        ArrayList<GroceryItem> newItems =utils.getAllItems(getActivity());
+        ArrayList<GroceryItem> newItems = utils.getAllItems(getActivity());
 
 
+        Comparator<GroceryItem> newItemsComparator = new Comparator<GroceryItem>() {
+            @Override
+            public int compare(GroceryItem o1, GroceryItem o2) {
+                return o1.getId() - o2.getId();
+            }
+        };
 
-    Comparator<GroceryItem> newItemsComparator =new Comparator<GroceryItem>() {
-        @Override
-        public int compare(GroceryItem o1, GroceryItem o2) {
-            return o1.getId() - o2.getId();
-        }
-    };
+        Comparator<GroceryItem> reversedNewItemComparator = Collections.reverseOrder(newItemsComparator);
+        Collections.sort(newItems, reversedNewItemComparator);
 
-    Comparator<GroceryItem> reversedNewItemComparator = Collections.reverseOrder(newItemsComparator);
-        Collections.sort(newItems,reversedNewItemComparator);
-
-        if(null !=newItems){
+        if (null != newItems) {
             newItemAdapter.setItems(newItems);
 
 
@@ -85,14 +85,14 @@ public class MainFragment extends Fragment {
 
         ArrayList<GroceryItem> popularItems = utils.getAllItems(getActivity());
 
-        Comparator<GroceryItem> popularityComparator=new Comparator<GroceryItem>() {
+        Comparator<GroceryItem> popularityComparator = new Comparator<GroceryItem>() {
             @Override
             public int compare(GroceryItem o1, GroceryItem o2) {
-                return compareByPopularity(o1,o2);
+                return compareByPopularity(o1, o2);
             }
         };
-        Comparator<GroceryItem>reversePopularityComparator=Collections.reverseOrder(popularityComparator);
-        Collections.sort(popularItems,reversePopularityComparator);
+        Comparator<GroceryItem> reversePopularityComparator = Collections.reverseOrder(popularityComparator);
+        Collections.sort(popularItems, reversePopularityComparator);
 
         popularItemsAdapter.setItems(popularItems);
 
@@ -100,26 +100,28 @@ public class MainFragment extends Fragment {
         Comparator<GroceryItem> suggestedItemsComparator = new Comparator<GroceryItem>() {
             @Override
             public int compare(GroceryItem o1, GroceryItem o2) {
-                return o1.getUserPoint()-o2.getUserPoint();
+                return o1.getUserPoint() - o2.getUserPoint();
             }
         };
         Comparator<GroceryItem> reveredSuggestedItemComparator = Collections.reverseOrder(suggestedItemsComparator);
-    Collections.sort(suggestedItems,reveredSuggestedItemComparator);
+        Collections.sort(suggestedItems, reveredSuggestedItemComparator);
 
-   suggestedItemAdapter.setItems(suggestedItems);
+        suggestedItemAdapter.setItems(suggestedItems);
 
     }
-private int compareByPopularity (GroceryItem item1, GroceryItem item2){
-    Log.d(TAG, "compareByPopularity: started");
 
-    if(item1.getPopularityPoint()>item2.getPopularityPoint()){
-        return 1;
-    }else if(item1.getPopularityPoint()>item2.getPopularityPoint()){
-        return -1;
-    }else{
-        return 0;
+    private int compareByPopularity(GroceryItem item1, GroceryItem item2) {
+        Log.d(TAG, "compareByPopularity: started");
+
+        if (item1.getPopularityPoint() > item2.getPopularityPoint()) {
+            return 1;
+        } else if (item1.getPopularityPoint() > item2.getPopularityPoint()) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
-}
+
     private void initBottomNavigation() {
         Log.d(TAG, "initBottomNavigation: started");
 
