@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:padding="30dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+
+        <TextView
+            android:text="Your review about: "
+            android:id="@+id/reviewExplain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <TextView
+            android:layout_toRightOf="@+id/reviewExplain"
+            android:text="item name"
+            android:id="@+id/reviewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+    </RelativeLayout>
+
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:hint="Your name here"
+        android:id="@+id/editTxtName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </EditText>
+
+    <EditText
+        android:gravity="start"
+        android:lines="5"
+        android:layout_marginTop="10dp"
+        android:hint="review"
+        android:id="@+id/editTxtReview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </EditText>
+
+    <TextView
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorAccent"
+        android:id="@+id/txtWarning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+
+    </TextView>
+
+    <Button
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:text="add"
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+
+
+    </Button>
+
+
+
 
 </LinearLayout>
