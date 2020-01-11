@@ -15,6 +15,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.second_sample_application_10tutorial_1.Models.GroceryItem;
+import com.example.second_sample_application_10tutorial_1.Models.Review;
+
+import java.util.ArrayList;
 
 public class GroceryItemActivity extends AppCompatActivity {
 
@@ -34,10 +37,14 @@ public class GroceryItemActivity extends AppCompatActivity {
 
     private GroceryItem incomingItem;
 
+    private Utils utils;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grocery_item);
+
+        utils = new Utils(this);
 
         Intent intent = getIntent();
         try {
@@ -83,6 +90,17 @@ public class GroceryItemActivity extends AppCompatActivity {
         adapter = new ReviewsAdapter();
         reviewRecView.setAdapter(adapter);
         reviewRecView.setLayoutManager(new LinearLayoutManager(this));
+
+        ArrayList<Review> reviews=utils.getReviewForItem(incomingItem.getId());
+        if(null !=reviews){
+           adapter.setReviews(reviews);
+        }
+      addReviewRelLayout.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              //TODO: show dialog
+          }
+      });
 
     }
 

@@ -63,7 +63,7 @@ public class Utils {
             initAllItems();
         }
 
-        
+
     }
 
     public ArrayList<GroceryItem> getAllItems() {
