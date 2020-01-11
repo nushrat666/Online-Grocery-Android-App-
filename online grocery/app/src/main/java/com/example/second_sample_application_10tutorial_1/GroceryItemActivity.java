@@ -19,9 +19,14 @@ import com.example.second_sample_application_10tutorial_1.Models.Review;
 
 import java.util.ArrayList;
 
-public class GroceryItemActivity extends AppCompatActivity {
+public class GroceryItemActivity extends AppCompatActivity implements AddReviewDialog.AddReview {
 
     private static final String TAG = "GroceryItemActivity";
+
+    @Override
+    public void onAddReviewResult(Review review) {
+        Log.d(TAG, "onAddReviewResult: we are adding " + review.toString());
+    }
 
     private TextView txtName, txtPrice, txtDescription, txtAvailability;
     private ImageView itemImage;
@@ -129,4 +134,6 @@ public class GroceryItemActivity extends AppCompatActivity {
 
 
     }
+
+
 }

@@ -22,13 +22,18 @@ public class Utils {
     private Context context;
 
     public Utils(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
     public static int getID() {
         ID++;
         return ID;
     }
+
+    
+
+
+
     
     public ArrayList<Review> getReviewForItem (int id){
         Log.d(TAG, "getReviewForItem: started");

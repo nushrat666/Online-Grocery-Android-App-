@@ -13,6 +13,11 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.example.second_sample_application_10tutorial_1.Models.GroceryItem;
+import com.example.second_sample_application_10tutorial_1.Models.Review;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class AddReviewDialog extends DialogFragment {
     private static final String TAG = "AddReviewDialog";
@@ -21,6 +26,13 @@ public class AddReviewDialog extends DialogFragment {
     private TextView txtItemName, txtWarning;
     private Button btnAddReview;
 
+    private int itemId=0;
+
+    public interface AddReview{
+        void onAddReviewResult (Review review);
+    }
+
+    private AddReview addReview;
 
     @Nullable
     @Override
@@ -36,6 +48,9 @@ public class AddReviewDialog extends DialogFragment {
         try{
             GroceryItem item = bundle.getParcelable("item");
             txtItemName.setText(item.getName());
+
+            this.itemId=item.getId();
+
         }catch(NullPointerException e){
             e.printStackTrace();
         }
@@ -50,7 +65,28 @@ public class AddReviewDialog extends DialogFragment {
         return builder.create();
     }
     private void addReview(){
-        Log.d(TAG, "addReview:started ");
+        Log.d(TAG, "addReview: started");
+        String name =edtTxtName.getText().toString();
+        String reviewText = edtTxtReview.getText().toString();
+        String date= getCurrentDate();
+
+        Review review = new Review(itemId,name,reviewText,date);
+
+        try{
+            addReview=(AddReview) getActivity();
+            addReview.onAddReviewResult(review);
+        }catch (ClassCastException e){
+            e.printStackTrace();
+        }
+    }
+
+    private String getCurrentDate() {
+        Log.d(TAG, "getCurrentDate: called");
+
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        return sdf.format(date);
+
     }
 
     private void initViews(View view) {
