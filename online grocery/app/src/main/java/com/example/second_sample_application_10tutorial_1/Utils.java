@@ -47,7 +47,7 @@ public class Utils {
     }
     
 
-    public void initDatabase(Context context) {
+    public void initDatabase() {
         Log.d(TAG, "initDatabase: started");
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(DATABASE_NAME, Context.MODE_PRIVATE);
@@ -60,13 +60,13 @@ public class Utils {
         ArrayList<GroceryItem> possibleItems = gson.fromJson(sharedPreferences.getString("allItems", ""), type);
 
         if (null == possibleItems) {
-            initAllItems(context);
+            initAllItems();
         }
 
-        initAllItems(context);
+        
     }
 
-    public ArrayList<GroceryItem> getAllItems(Context context) {
+    public ArrayList<GroceryItem> getAllItems() {
         Log.d(TAG, "getAllItems: started");
         Gson gson = new Gson();
         SharedPreferences sharedPreferences = context.getSharedPreferences(DATABASE_NAME, Context.MODE_PRIVATE);
@@ -77,7 +77,7 @@ public class Utils {
     }
 
 
-    private void initAllItems(Context context) {
+    private void initAllItems() {
         Log.d(TAG, "initAllItems: started");
 
 
