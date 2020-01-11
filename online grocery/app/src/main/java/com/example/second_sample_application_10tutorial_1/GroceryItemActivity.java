@@ -26,6 +26,9 @@ public class GroceryItemActivity extends AppCompatActivity implements AddReviewD
     @Override
     public void onAddReviewResult(Review review) {
         Log.d(TAG, "onAddReviewResult: we are adding " + review.toString());
+
+    utils.addReview(review);
+
     }
 
     private TextView txtName, txtPrice, txtDescription, txtAvailability;
@@ -51,6 +54,8 @@ public class GroceryItemActivity extends AppCompatActivity implements AddReviewD
 
         utils = new Utils(this);
 
+        initViews();
+
         Intent intent = getIntent();
         try {
 
@@ -60,10 +65,10 @@ public class GroceryItemActivity extends AppCompatActivity implements AddReviewD
 
 
         } catch (NullPointerException e) {
-
+           e.printStackTrace();
         }
 
-        initViews();
+
     }
 
     /**
@@ -104,6 +109,8 @@ public class GroceryItemActivity extends AppCompatActivity implements AddReviewD
           @Override
           public void onClick(View v) {
               //TODO: show dialog
+
+              
           }
       });
 

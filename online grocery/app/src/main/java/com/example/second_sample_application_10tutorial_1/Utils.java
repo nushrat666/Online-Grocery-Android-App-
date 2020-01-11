@@ -30,7 +30,30 @@ public class Utils {
         return ID;
     }
 
-    
+    public boolean addReview (Review review){
+        Log.d(TAG, "addReview: started");
+        SharedPreferences sharedPreferences =context.getSharedPreferences(DATABASE_NAME,Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<GroceryItem>>(){}.getType();
+        ArrayList<GroceryItem> items = gson.fromJson(sharedPreferences.getString("allItems",null),type);
+    if(null != items){
+        ArrayList<GroceryItem> newItems = new ArrayList<>();
+        for (GroceryItem item: items){
+            if(item.getId()==review.getGroceryItemId()){
+                ArrayList<Review> reviews = item.getReviews();
+                reviews.add(review);
+                item.setReviews(reviews);
+            }
+            newItems.add(item);
+        }
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("allItems",gson.toJson(newItems));
+        editor.commit();
+        return true;
+    }
+return false;
+
+    }
 
 
 
