@@ -29,6 +29,11 @@ public class GroceryItemActivity extends AppCompatActivity implements AddReviewD
 
     utils.addReview(review);
 
+    ArrayList<Review> reviews = utils.getReviewForItem(review.getGroceryItemId());
+    if(null !=reviews){
+        adapter.setReviews(reviews);
+    }
+
     }
 
     private TextView txtName, txtPrice, txtDescription, txtAvailability;
