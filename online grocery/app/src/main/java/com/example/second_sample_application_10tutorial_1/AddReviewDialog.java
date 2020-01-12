@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.second_sample_application_10tutorial_1.Models.GroceryItem;
 import com.example.second_sample_application_10tutorial_1.Models.Review;
@@ -22,11 +23,16 @@ import java.util.Date;
 public class AddReviewDialog extends DialogFragment {
     private static final String TAG = "AddReviewDialog";
 
-    private EditText edtTxtName, edtTxtReview;
-    private TextView txtItemName, txtWarning;
-    private Button btnAddReview;
+    private TextView reviewExplain,reviewName,txtWarning;
+    private EditText editTxtName,editTxtReview;
+ private Button btnAdd;
+
+
 
     private int itemId=0;
+
+    public void show(FragmentManager supportFragmentManager, String add_review_dialog) {
+    }
 
     public interface AddReview{
         void onAddReviewResult (Review review);
@@ -47,14 +53,14 @@ public class AddReviewDialog extends DialogFragment {
         Bundle bundle = getArguments();
         try{
             GroceryItem item = bundle.getParcelable("item");
-            txtItemName.setText(item.getName());
+            reviewExplain.setText(item.getName());
 
             this.itemId=item.getId();
 
         }catch(NullPointerException e){
             e.printStackTrace();
         }
-        btnAddReview.setOnClickListener(new View.OnClickListener() {
+        reviewExplain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addReview();
@@ -66,8 +72,8 @@ public class AddReviewDialog extends DialogFragment {
     }
     private void addReview(){
         Log.d(TAG, "addReview: started");
-        String name =edtTxtName.getText().toString();
-        String reviewText = edtTxtReview.getText().toString();
+        String name =reviewExplain.getText().toString();
+        String reviewText = reviewExplain.getText().toString();
         String date= getCurrentDate();
 
         Review review = new Review(itemId,name,reviewText,date);
@@ -91,11 +97,21 @@ public class AddReviewDialog extends DialogFragment {
 
     private void initViews(View view) {
         Log.d(TAG, "initViews: started");
-        edtTxtName=(EditText)view.findViewById(R.id.editTxtName);
-        edtTxtReview=(EditText)view.findViewById(R.id.editTxtReview);
-        txtItemName=(TextView) view.findViewById(R.id.txtItemName);
-        txtWarning=(TextView)view.findViewById(R.id.txtWarning);
-        btnAddReview=(Button) view.findViewById(R.id.btnAdd);
+
+
+        reviewExplain=(TextView) view.findViewById(R.id.reviewExplain);
+        reviewName=(TextView) view.findViewById(R.id.reviewName);
+        txtWarning=(TextView) view.findViewById(R.id.txtWarning);
+
+        editTxtName=(EditText) view.findViewById(R.id.editTxtName);
+        editTxtReview=(EditText) view.findViewById(R.id.editTxtReview);
+        btnAdd=(Button) view.findViewById(R.id.btnAdd);
+
+
+
+
+
+
     }
 }
 

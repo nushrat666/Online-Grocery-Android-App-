@@ -110,7 +110,12 @@ public class GroceryItemActivity extends AppCompatActivity implements AddReviewD
           public void onClick(View v) {
               //TODO: show dialog
 
-              
+              AddReviewDialog addReviewDialog = new AddReviewDialog();
+          Bundle bundle= new Bundle();
+          bundle.putParcelable("item",incomingItem);
+          addReviewDialog.setArguments(bundle);
+addReviewDialog.show(getSupportFragmentManager(), "add review dialog");
+
           }
       });
 
