@@ -27,12 +27,12 @@ public class GroceryItemActivity extends AppCompatActivity implements AddReviewD
     public void onAddReviewResult(Review review) {
         Log.d(TAG, "onAddReviewResult: we are adding " + review.toString());
 
-    utils.addReview(review);
+        utils.addReview(review);
 
-    ArrayList<Review> reviews = utils.getReviewForItem(review.getGroceryItemId());
-    if(null !=reviews){
-        adapter.setReviews(reviews);
-    }
+        ArrayList<Review> reviews = utils.getReviewForItem(review.getGroceryItemId());
+        if (null != reviews) {
+            adapter.setReviews(reviews);
+        }
 
     }
 
@@ -70,7 +70,7 @@ public class GroceryItemActivity extends AppCompatActivity implements AddReviewD
 
 
         } catch (NullPointerException e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
 
 
@@ -106,23 +106,23 @@ public class GroceryItemActivity extends AppCompatActivity implements AddReviewD
         reviewRecView.setAdapter(adapter);
         reviewRecView.setLayoutManager(new LinearLayoutManager(this));
 
-        ArrayList<Review> reviews=utils.getReviewForItem(incomingItem.getId());
-        if(null !=reviews){
-           adapter.setReviews(reviews);
+        ArrayList<Review> reviews = utils.getReviewForItem(incomingItem.getId());
+        if (null != reviews) {
+            adapter.setReviews(reviews);
         }
-      addReviewRelLayout.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              //TODO: show dialog
+        addReviewRelLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: show dialog
 
-              AddReviewDialog addReviewDialog = new AddReviewDialog();
-          Bundle bundle= new Bundle();
-          bundle.putParcelable("item",incomingItem);
-          addReviewDialog.setArguments(bundle);
-addReviewDialog.show(getSupportFragmentManager(), "add review dialog");
+                AddReviewDialog addReviewDialog = new AddReviewDialog();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("item", incomingItem);
+                addReviewDialog.setArguments(bundle);
+                addReviewDialog.show(getSupportFragmentManager(), "add review dialog");
 
-          }
-      });
+            }
+        });
 
     }
 

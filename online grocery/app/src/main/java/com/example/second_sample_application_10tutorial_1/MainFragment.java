@@ -91,13 +91,21 @@ public class MainFragment extends Fragment {
 
         ArrayList<GroceryItem> popularItems = utils.getAllItems();
 
+
+
+
         Comparator<GroceryItem> popularityComparator = new Comparator<GroceryItem>() {
             @Override
             public int compare(GroceryItem o1, GroceryItem o2) {
                 return compareByPopularity(o1, o2);
             }
         };
+
+
         Comparator<GroceryItem> reversePopularityComparator = Collections.reverseOrder(popularityComparator);
+
+
+
         Collections.sort(popularItems, reversePopularityComparator);
 
         popularItemsAdapter.setItems(popularItems);
@@ -119,9 +127,11 @@ public class MainFragment extends Fragment {
     private int compareByPopularity(GroceryItem item1, GroceryItem item2) {
         Log.d(TAG, "compareByPopularity: started");
 
+
+
         if (item1.getPopularityPoint() > item2.getPopularityPoint()) {
             return 1;
-        } else if (item1.getPopularityPoint() > item2.getPopularityPoint()) {
+        } else if (item1.getPopularityPoint() < item2.getPopularityPoint()) {
             return -1;
         } else {
             return 0;
