@@ -88,10 +88,16 @@ return false;
         ArrayList<GroceryItem> possibleItems = gson.fromJson(sharedPreferences.getString("allItems", ""), type);
 
         if (null == possibleItems) {
+
+            /**
+             * initAllItems(context);
+             */
             initAllItems();
         }
 
-
+/**
+ * initAllItems(context);
+ */
     }
 
     public ArrayList<GroceryItem> getAllItems() {

@@ -76,6 +76,8 @@ public class MainFragment extends Fragment {
         Comparator<GroceryItem> newItemsComparator = new Comparator<GroceryItem>() {
             @Override
             public int compare(GroceryItem o1, GroceryItem o2) {
+
+
                 return o1.getId() - o2.getId();
             }
         };
@@ -88,9 +90,10 @@ public class MainFragment extends Fragment {
 
 
         }
-
+/**
+ * ArrayList<GroceryItem> popularItems = utils.getAllItems(getActivity());
+ */
         ArrayList<GroceryItem> popularItems = utils.getAllItems();
-
 
 
 
@@ -105,9 +108,15 @@ public class MainFragment extends Fragment {
         Comparator<GroceryItem> reversePopularityComparator = Collections.reverseOrder(popularityComparator);
 
 
-
+/**
+ * Collections.sort(newItems, reversePopularityComparator);
+ */
         Collections.sort(popularItems, reversePopularityComparator);
 
+
+        /**
+         * popularItemsAdapter.setItems(newItems);
+         */
         popularItemsAdapter.setItems(popularItems);
 
         ArrayList<GroceryItem> suggestedItems = utils.getAllItems();
@@ -118,6 +127,8 @@ public class MainFragment extends Fragment {
             }
         };
         Comparator<GroceryItem> reveredSuggestedItemComparator = Collections.reverseOrder(suggestedItemsComparator);
+
+
         Collections.sort(suggestedItems, reveredSuggestedItemComparator);
 
         suggestedItemAdapter.setItems(suggestedItems);
